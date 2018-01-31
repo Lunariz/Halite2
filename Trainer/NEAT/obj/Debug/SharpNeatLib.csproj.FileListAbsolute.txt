@@ -1,0 +1,11 @@
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\SharpNeatLib.dll
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\SharpNeatLib.pdb
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\log4net.dll
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\Redzen.dll
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\log4net.xml
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\bin\Debug\Redzen.xml
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\obj\Debug\SharpNeatLib.csprojResolveAssemblyReference.cache
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\obj\Debug\SharpNeat.Properties.Resources.resources
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\obj\Debug\SharpNeatLib.csproj.GenerateResource.Cache
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\obj\Debug\SharpNeatLib.dll
+C:\Users\Lukas\Desktop\sharpneat-2.3.1\src\SharpNeatLib\obj\Debug\SharpNeatLib.pdb

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37269968-02D5-47F4-817B-D8CD9B2E52C1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Halite2</RootNamespace>
+    <AssemblyName>Halite2</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Redzen, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Redzen.3.0.2\lib\net40\Redzen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Strategy\DesertStrategy.cs" />
+    <Compile Include="Strategy\DefendStrategy.cs" />
+    <Compile Include="Strategy\AttackStrategy.cs" />
+    <Compile Include="Strategy\BatchStrategizer.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trainer\NEAT\Forms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trainer\NEAT\Forms\GenomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trainer\NEAT\Forms\GraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Trainer\NEAT\Forms\GraphFactories\NetworkGraphFactory.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\CppnGraphPainter.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\DepthLayoutManager.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\GraphConnection.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\GraphNode.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\GridLayoutManager.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\ILayoutManager.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\IOGraph.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\IOGraphPainter.cs" />
+    <Compile Include="Trainer\NEAT\Forms\Graph\IOGraphViewportPainter.cs" />
+    <Compile Include="Trainer\NEAT\Forms\IViewportPainter.cs" />
+    <Compile Include="Trainer\NEAT\Forms\NeatGenomeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Trainer\NEAT\Forms\Viewport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Strategy\Commands\NoCommand.cs" />
+    <Compile Include="Navigation\NavigationCollisionUtility.cs" />
+    <Compile Include="Navigation\PathingTarget.cs" />
+    <Compile Include="Navigation\NavigationWorld.cs" />
+    <Compile Include="Navigation\NavigationPath.cs" />
+    <Compile Include="Navigation\NavigationMovement.cs" />
+    <Compile Include="Navigation\BatchNavigation.cs" />
+    <Compile Include="Strategy\Commands\Command.cs" />
+    <Compile Include="Strategy\Commands\DockCommand.cs" />
+    <Compile Include="hlt\Collision.cs" />
+    <Compile Include="hlt\Constants.cs" />
+    <Compile Include="hlt\DebugLog.cs" />
+    <Compile Include="hlt\DockMove.cs" />
+    <Compile Include="hlt\Entity.cs" />
+    <Compile Include="hlt\GameMap.cs" />
+    <Compile Include="hlt\Metadata.cs" />
+    <Compile Include="hlt\MetadataParser.cs" />
+    <Compile Include="hlt\Move.cs" />
+    <Compile Include="hlt\Navigation.cs" />
+    <Compile Include="hlt\Networking.cs" />
+    <Compile Include="hlt\Planet.cs" />
+    <Compile Include="hlt\Player.cs" />
+    <Compile Include="hlt\Position.cs" />
+    <Compile Include="hlt\Ship.cs" />
+    <Compile Include="hlt\ThrustMove.cs" />
+    <Compile Include="hlt\UndockMove.cs" />
+    <Compile Include="hlt\Util.cs" />
+    <Compile Include="Strategy\Commands\MoveCommand.cs" />
+    <Compile Include="MyBot.cs" />
+    <Compile Include="Trainer\NEAT\Core\AuxFitnessInfo.cs" />
+    <Compile Include="Trainer\NEAT\Core\CoordinateVector.cs" />
+    <Compile Include="Trainer\NEAT\Core\EvaluationInfo.cs" />
+    <Compile Include="Trainer\NEAT\Core\FitnessInfo.cs" />
+    <Compile Include="Trainer\NEAT\Core\GenomeFitnessComparer.cs" />
+    <Compile Include="Trainer\NEAT\Core\IDistanceMetric.cs" />
+    <Compile Include="Trainer\NEAT\Core\IEvolutionAlgorithm.cs" />
+    <Compile Include="Trainer\NEAT\Core\IGenome.cs" />
+    <Compile Include="Trainer\NEAT\Core\IGenomeDecoder.cs" />
+    <Compile Include="Trainer\NEAT\Core\IGenomeFactory.cs" />
+    <Compile Include="Trainer\NEAT\Core\IGenomeListEvaluator.cs" />
+    <Compile Include="Trainer\NEAT\Core\IPhenomeEvaluator.cs" />
+    <Compile Include="Trainer\NEAT\Core\ISpeciationStrategy.cs" />
+    <Compile Include="Trainer\NEAT\Core\ParallelGenomeListEvaluator.cs" />
+    <Compile Include="Trainer\NEAT\Core\RunState.cs" />
+    <Compile Include="Trainer\NEAT\Core\SelectiveGenomeListEvaluator.cs" />
+    <Compile Include="Trainer\NEAT\Core\SerialGenomeListEvaluator.cs" />
+    <Compile Include="Trainer\NEAT\Core\Specie.cs" />
+    <Compile Include="Trainer\NEAT\Core\UpdateMode.cs" />
+    <Compile Include="Trainer\NEAT\Core\UpdateScheme.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\CyclicNetworkFactory.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\FastAcyclicNetworkFactory.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\FastCyclicNetworkFactory.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\DefaultNodeSetMappingFunction.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\HyperNeatDecoder.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\INodeSetMappingFunction.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\NodeSetMapping.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\Substrate.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\SubstrateConnection.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\SubstrateNode.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\HyperNeat\SubstrateNodeSet.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\Neat\NeatGenomeDecoder.cs" />
+    <Compile Include="Trainer\NEAT\Decoders\NetworkActivationScheme.cs" />
+    <Compile Include="Trainer\NEAT\DistanceMetrics\DistanceMetricUtils.cs" />
+    <Compile Include="Trainer\NEAT\DistanceMetrics\EuclideanDistanceMetric.cs" />
+    <Compile Include="Trainer\NEAT\DistanceMetrics\ManhattanDistanceMetric.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\AbstractGenerationalAlgorithm.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\ComplexityRegulation\ComplexityCeilingType.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\ComplexityRegulation\ComplexityRegulationMode.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\ComplexityRegulation\DefaultComplexityRegulationStrategy.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\ComplexityRegulation\IComplexityRegulationStrategy.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\ComplexityRegulation\NullComplexityRegulationStrategy.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\NeatAlgorithmStats.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\NeatEvolutionAlgorithm.cs" />
+    <Compile Include="Trainer\NEAT\EvolutionAlgorithms\NeatEvolutionAlgorithmParameters.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\HyperNeat\CppnGenomeFactory.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\AddedNeuronGeneStruct.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionGene.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionGeneComparer.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionGeneList.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionGeneListBuilder.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionMutationInfo.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionMutationInfoList.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionPerturbanceType.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\ConnectionSelectionType.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\CorrelationItem.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\CorrelationItemType.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\CorrelationResults.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\CorrelationStatistics.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeatGenome.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeatGenomeFactory.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeatGenomeParameters.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeatGenomeStats.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeatGenomeXmlIO.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeuronGene.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\Neat\NeuronGeneList.cs" />
+    <Compile Include="Trainer\NEAT\Genomes\RbfNeat\RbfGenomeFactory.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\ActivationFunctionInfo.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Bipolar\BipolarGaussian.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Bipolar\BipolarSigmoid.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Bipolar\Linear.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Bipolar\Sine.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\NullFn.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\RadialBasis\RbfGaussian.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\Gaussian.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\LogisticFunction.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\LogisticFunctionSteep.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\PolynomialApproximantSteep.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\QuadraticSigmoid.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\SoftSignSteep.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\SReLU.cs" />
+    <Compile Include="Trainer\NEAT\Network\ActivationFunctions\Unipolar\SReLUShifted.cs" />
+    <Compile Include="Trainer\NEAT\Network\AcyclicNetworkDepthAnalysis.cs" />
+    <Compile Include="Trainer\NEAT\Network\ConnectionEndpointsStruct.cs" />
+    <Compile Include="Trainer\NEAT\Network\ConnectionList.cs" />
+    <Compile Include="Trainer\NEAT\Network\CyclicNetworkDepthAnalysis.cs" />
+    <Compile Include="Trainer\NEAT\Network\CyclicNetworkTest.cs" />
+    <Compile Include="Trainer\NEAT\Network\DefaultActivationFunctionLibrary.cs" />
+    <Compile Include="Trainer\NEAT\Network\IActivationFunction.cs" />
+    <Compile Include="Trainer\NEAT\Network\IActivationFunctionLibrary.cs" />
+    <Compile Include="Trainer\NEAT\Network\IConnectionList.cs" />
+    <Compile Include="Trainer\NEAT\Network\INetworkConnection.cs" />
+    <Compile Include="Trainer\NEAT\Network\INetworkDefinition.cs" />
+    <Compile Include="Trainer\NEAT\Network\INetworkNode.cs" />
+    <Compile Include="Trainer\NEAT\Network\INodeList.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkConnection.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkConnectivityData.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkDefinition.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkDepthInfo.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkNode.cs" />
+    <Compile Include="Trainer\NEAT\Network\NetworkXmlIO.cs" />
+    <Compile Include="Trainer\NEAT\Network\NodeConnectivityData.cs" />
+    <Compile Include="Trainer\NEAT\Network\NodeList.cs" />
+    <Compile Include="Trainer\NEAT\Network\NodeType.cs" />
+    <Compile Include="Trainer\NEAT\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="Trainer\NEAT\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="Trainer\NEAT\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\IBlackBox.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\ISignalArray.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\MappingSignalArray.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\AcyclicNetwork\FastAcyclicNetwork.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\AcyclicNetwork\LayerInfo.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\CyclicNetwork\Connection.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\CyclicNetwork\CyclicNetwork.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\CyclicNetwork\Neuron.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\CyclicNetwork\RelaxingCyclicNetwork.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\FastCyclicNetwork\FastConnection.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\FastCyclicNetwork\FastCyclicNetwork.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\NeuralNets\FastCyclicNetwork\FastRelaxingCyclicNetwork.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\OutputMappingSignalArray.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\OutputSignalArray.cs" />
+    <Compile Include="Trainer\NEAT\Phenomes\SignalArray.cs" />
+    <Compile Include="Trainer\NEAT\Properties\AssemblyInfo.cs" />
+    <Compile Include="Trainer\NEAT\Properties\Resources.Designer.cs" />
+    <Compile Include="Trainer\NEAT\Properties\Settings.Designer.cs" />
+    <Compile Include="Trainer\NEAT\SharpNeatException.cs" />
+    <Compile Include="Trainer\NEAT\SpeciationStrategies\GenomeDistancePair.cs" />
+    <Compile Include="Trainer\NEAT\SpeciationStrategies\KMeansClusteringStrategy.cs" />
+    <Compile Include="Trainer\NEAT\SpeciationStrategies\ParallelKMeansClusteringStrategy.cs" />
+    <Compile Include="Trainer\NEAT\SpeciationStrategies\RandomClusteringStrategy.cs" />
+    <Compile Include="Trainer\NEAT\SpeciationStrategies\SpeciationUtils.cs" />
+    <Compile Include="Trainer\NEAT\Utility\Point2DDouble.cs" />
+    <Compile Include="Trainer\NEAT\Utility\UInt32IdGenerator.cs" />
+    <Compile Include="Trainer\NEAT\Utility\Utilities.cs" />
+    <Compile Include="Trainer\NEAT\Utility\XmlIoUtils.cs" />
+    <Compile Include="Scripts\Profiler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategy\KiteStrategy.cs" />
+    <Compile Include="Trainer\StrategyChoosers\NEATInput.cs" />
+    <Compile Include="Trainer\StrategyChoosers\NEATStrategyChooser.cs" />
+    <Compile Include="Trainer\StrategyChoosers\StrategyChooser.cs" />
+    <Compile Include="Trainer\StrategyChoosers\StringStrategyChooser.cs" />
+    <Compile Include="Scripts\TargetUtility.cs" />
+    <Compile Include="Trainer\NEATTrainer.cs" />
+    <Compile Include="Trainer\Program.cs" />
+    <Compile Include="Trainer\RunUtility.cs" />
+    <Compile Include="Scripts\StaticRandom.cs" />
+    <Compile Include="Strategy\AttackDockedShipsStrategy.cs" />
+    <Compile Include="Strategy\AttackUndockedShipsStrategy.cs" />
+    <Compile Include="Strategy\DockStrategy.cs" />
+    <Compile Include="Strategy\DefendDockedShipsStrategy.cs" />
+    <Compile Include="Strategy\GroupingStrategy.cs" />
+    <Compile Include="Strategy\CrashIntoPlanetStrategy.cs" />
+    <Compile Include="Strategy\DockUnownedStrategy.cs" />
+    <Compile Include="Strategy\CrashIntoShipStrategy.cs" />
+    <Compile Include="Strategy\Strategy.cs" />
+    <Compile Include="Strategy\StrategyManager.cs" />
+    <Compile Include="Trainer\RandomTrainer.cs" />
+    <Compile Include="Trainer\EvolutionaryTrainer.cs" />
+    <Compile Include="Trainer\TournamentUtility.cs" />
+    <Compile Include="Trainer\Trainer.cs" />
+    <Compile Include="Strategy\Commands\UndockCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Trainer\NEAT\obj\Debug\CoreCompileInputs.cache" />
+    <None Include="Trainer\NEAT\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="Trainer\NEAT\obj\Debug\SharpNeatLib.csproj.GenerateResource.Cache" />
+    <None Include="Trainer\NEAT\obj\Debug\SharpNeatLib.csprojResolveAssemblyReference.cache" />
+    <None Include="Trainer\NEAT\packages.config" />
+    <None Include="Trainer\NEAT\Properties\Settings.settings" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+    <Content Include="Trainer\NEAT\bin\Debug\log4net.dll" />
+    <Content Include="Trainer\NEAT\bin\Debug\log4net.xml" />
+    <Content Include="Trainer\NEAT\bin\Debug\Redzen.dll" />
+    <Content Include="Trainer\NEAT\bin\Debug\Redzen.xml" />
+    <Content Include="Trainer\NEAT\bin\Debug\SharpNeatLib.dll" />
+    <Content Include="Trainer\NEAT\bin\Debug\SharpNeatLib.pdb" />
+    <Content Include="Trainer\NEAT\obj\Debug\SharpNeatLib.csproj.FileListAbsolute.txt" />
+    <Content Include="Trainer\NEAT\obj\Debug\SharpNeatLib.dll" />
+    <Content Include="Trainer\NEAT\obj\Debug\SharpNeatLib.pdb" />
+    <Content Include="Trainer\NEAT\SharpNeatLib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Trainer\NEAT\Forms\GraphControl.resx">
+      <DependentUpon>GraphControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trainer\NEAT\obj\Debug\SharpNeat.Properties.Resources.resources" />
+    <EmbeddedResource Include="Trainer\NEAT\Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Trainer\NEAT\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
