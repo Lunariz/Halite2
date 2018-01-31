@@ -39,15 +39,15 @@ The first relevant script is [Trainer.PlayMatch()](https://github.com/Lunariz/Ha
 Because matches are played in a completely separate program (halite.exe) we need to make various preparations to get this working.  
 One of these preparations is saving StrategyChoosers as files - this way we can pass the data to the bots who will be playing without a direct connection.
 
-Next, we run the actual simulation by calling halite.exe with the relevant parameters (file locations). This is done in [RunUtility.RunMatch()](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L62)
+Next, we run the actual simulation by calling halite.exe with the relevant parameters (file locations). This is done in [RunUtility.RunMatch()](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L63)
 
-We parse the outputs of this simulation via [RunUtility.ProcessOutput()](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L132), from which we can build [GameResults](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L195). Using these results, we can decide how to treat the winners or losers in our tournament
+We parse the outputs of this simulation via [RunUtility.ProcessOutput()](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L133), from which we can build [GameResults](https://github.com/Lunariz/Halite2/blob/master/Trainer/RunUtility.cs#L196). Using these results, we can decide how to treat the winners or losers in our tournament
 
 ### Simulating tournaments
 
 Now that we can run single matches, it's time to use this fact to run an entire tournament on a list of StrategyChoosers.
 
-This is all done through [TournamentUtility.RunTournament()](https://github.com/Lunariz/Halite2/blob/master/Trainer/TournamentUtility.cs#L36).  
+This is all done through [TournamentUtility.RunTournament()](https://github.com/Lunariz/Halite2/blob/master/Trainer/TournamentUtility.cs#L35).  
 RunTournament divides the games to be played into two groups: duels (1v1) and groups (1v1v1v1).  
 While playing these games, it keeps track of StrategyChoosers through a point system, assigning points for every game played.
 
@@ -55,7 +55,7 @@ Both parts of the tournament (duel games and group games) are further divided in
 In each round, the list of StrategyChoosers is randomized, and all StrategyChoosers play one match.
 
 Since simulating these games is the most computationally expensive part of our whole Trainer system, it was highly effective to parallelize the games played.  
-[TournamentUtility.PlayGames()](https://github.com/Lunariz/Halite2/blob/master/Trainer/TournamentUtility.cs#L57) allows for this by first batching the games to be played, and then playing them concurrently.
+[TournamentUtility.PlayGames()](https://github.com/Lunariz/Halite2/blob/master/Trainer/TournamentUtility.cs#L56) allows for this by first batching the games to be played, and then playing them concurrently.
 
 When all games are played, we can sort the StrategyChoosers by points (or points per game, if not all bots play an equal amount of games).  
 The top N in this sorted list are then 'the best'

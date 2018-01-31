@@ -66,7 +66,7 @@ The two points on the circle where the tangesnts touch the circle are called tan
 Taking these points and then extrapolating from the surface by a safety margin, gives us two points that we can reach in a straight line, which will allow us to avoid the collider.  
 We choose the point closest to our final targetposition to minimize distance traveled.
 
-The relevant code can be found in [NavigationPath.CreateCollisionAvoidance()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationPath.cs#L177)
+The relevant code can be found in [NavigationPath.CreateCollisionAvoidance()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationPath.cs#L180)
 
 #### Recognizing collisions & Moving colliders
 
@@ -112,12 +112,12 @@ Note that this approach of comparing paths is valid for both moving and unmoving
 
 Because the previous step of avoiding collisions is iteration-bound, it is possible that a ship cannot find a valid path in its allotted iterations.  
 As a result, we need to forcefully cut their paths short to prevent any collisions.  
-This process is quite similar to avoiding collisions - we first find the collision, but instead of generating an avoidance point, we generate a [stop point](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationPath.cs#L218) instead.
+This process is quite similar to avoiding collisions - we first find the collision, but instead of generating an avoidance point, we generate a [stop point](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationPath.cs#L221) instead.
 
 But this is not all. It is possible other paths relied on that ship moving during their iterations. This ship now stopping can actually cause a new collision with another of our ships.  
 As such, we once again iterate over all paths and attempt to find new collisions, and forcefully stop them, until there are no collisions remaining.
 
-This process takes place [here](https://github.com/Lunariz/Halite2/blob/master/Navigation/BatchNavigation.cs#L130)
+This process takes place [here](https://github.com/Lunariz/Halite2/blob/master/Navigation/BatchNavigation.cs#L129)
 
 ## Pros and Cons
 
