@@ -35,7 +35,7 @@ This StrategyChooser has nothing to say about how the strategy should be perform
 In order to find a neural network that can interpret data in a smart way and give the correct order, NEAT builds a population of neural networks and evolves them based on their fitness.  
 This fitness value is decided through a tournament - the bots battle each other, and the victors get to procreate. The result is a population of networks that improves in quality every generation.
 
-[Read more]
+[Read more](https://github.com/Lunariz/Halite2/tree/master/Trainer)
 
 ### Strategy implementation
 
@@ -45,7 +45,7 @@ Looking at strategies at this level is much easier than looking at the goal of t
 Each strategy has a different goal, but they all have the same result: each strategy returns a Command to indicate what they want to do to reach their goal.  
 This Command is usually a MoveCommand, but can be a DockCommand or UndockCommand as well. Note that a MoveCommand does not describe -how- to get somewhere, simply where it wants to go.
 
-[Read more]
+[Read more](https://github.com/Lunariz/Halite2/tree/master/Strategy)
 
 ### Navigation
 
@@ -56,7 +56,7 @@ I took this concept and extended it to prevent collisions at any point in time. 
 
 This part of the code is probably the hardest to understand deeply, as it involves a lot of math complexity.
 
-[Read more]
+[Read more](https://github.com/Lunariz/Halite2/tree/master/Navigation)
 
 ## Acknowledgements
 

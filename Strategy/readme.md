@@ -7,12 +7,12 @@ On one hand, this allows for lots of experimentation, as we expect our ML system
 On the other hand, the more strategies we implement, the more difficult it becomes to train a StrategyChooser, as the amount of potentially useless mutations increases.
 
 As it turns out, building many ineffective strategies did not prove to be very useful, as the time it took to evolve anything usable was simply too much.
-[That is why I decided to only enable two strategies], and make them intelligent enough that either choice would prove useful in some way.
+That is why I decided to only enable two strategies, and make them intelligent enough that either choice would prove useful in some way.
 
-The two intelligent strategies are [Attack] and [Defend] - the rest can no longer be chosen by the strategychooser, but are still used inside Attack and Defend.
+The two intelligent strategies are [Attack](https://github.com/Lunariz/Halite2/blob/master/Strategy/AttackStrategy.cs) and [Defend](https://github.com/Lunariz/Halite2/blob/master/Strategy/DefendStrategy.cs) - the rest can no longer be chosen by the strategychooser, but are still used inside Attack and Defend.
 
 In addition, there is one odd strategy that is more event-based, as it cannot be chosen and is more permanent.
-This is the [Desert strategy]. Since retreat is sometimes the best way to survive, Desert attempts to survive instead of fight by hiding in a corner.
+This is the [Desert strategy](https://github.com/Lunariz/Halite2/blob/master/Strategy/DesertStrategy.cs). Since retreat is sometimes the best way to survive, Desert attempts to survive instead of fight by hiding in a corner.
 Since this is a very specific, global strategy, I decided not to count on the ML system to choose when to perform it (and perform it on all ships), and hardcoding it instead.
 
 Both the Attack and Defend strategy effectively form groups of ships and compare our shipcount to the enemy shipcount, attacking if our shipcount is higher, or abandoning if our shipcount is considerably lower.
