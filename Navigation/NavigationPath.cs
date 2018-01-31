@@ -15,7 +15,10 @@ namespace Halite2
 		public double DistanceOffset = 0;
 		public int TimeOffset;
 
-		public int Frames { get { return Positions.Count; } }
+		public int Frames
+		{
+			get { return Positions.Count; }
+		}
 
 		public Position Start
 		{
@@ -47,11 +50,11 @@ namespace Halite2
 			int angle = Util.AngleRadToDegClipped(angleRad);
 
 			double decimalThrust = navigationMovement.Distance;
-			
+
 			//This floating point magic usually won't matter, but it avoids ceiling too far because of floating point errors and overshooting
 			int thrust = (int) (decimalThrust > 0.01d ? Math.Ceiling(decimalThrust - 0.0001d) : decimalThrust);
 			thrust = Math.Min(thrust, Constants.MAX_SPEED);
-			
+
 			return new ThrustMove(ship, angle, thrust);
 		}
 
@@ -88,7 +91,7 @@ namespace Halite2
 		{
 			get { return GameMap.IsLive ? 7 : 2; }
 		}
-		
+
 		public static NavigationPath CreateModified(Entity entity, Position startingPosition, PathingTarget target, NavigationWorld world, double distanceOffset = 0, int timeOffset = 0, int maxIterations = -1, int iteration = 0)
 		{
 			if (maxIterations == -1)
@@ -100,7 +103,7 @@ namespace Halite2
 			navigationPath.Target = target;
 			navigationPath.TimeOffset = timeOffset;
 			navigationPath.Positions.Add(startingPosition);
-			
+
 			Position targetPosition = world.FindInterceptPosition(startingPosition, distanceOffset, target);
 			targetPosition = startingPosition.GetOvershootPoint(targetPosition);
 
@@ -120,7 +123,7 @@ namespace Halite2
 
 			return navigationPath;
 		}
-		
+
 		public void Modify(NavigationWorld world, PathingTarget target, int maxIterations, int iteration = 0, bool onlyFirstHalf = false)
 		{
 			if (iteration >= maxIterations)
@@ -142,18 +145,18 @@ namespace Halite2
 			{
 				return;
 			}
-			
+
 			//We try to avoid the collision if we have more iterations ahead of us, otherwise we simply stop right before the collision
 			Position modifiedTarget = iteration < maxIterations - 1 ? CreateCollisionAvoidance(collision, target) : CreateCollisionStop(collision);
 			modifiedTarget = Positions[0].GetOvershootPoint(modifiedTarget);
-			
+
 			Positions[1] = modifiedTarget;
 
 			//Now there are 2 options, either the avoidance point is reachable immediately or it is not.
 			//If it is reachable, this modify does nothing - we have our path from start to avoidance point, and will continue creating the path from the avoidance point to the target
 			//If it is not reachable, we need to find another avoidance point that would get us closer to the original avoidance point, choose that as the new avoidance point, and discard the old one.
 			//We repeat this recursively to find the closest (hopefully) reachable avoidance point, and then calculate the rest of the path from there
-			Modify(world, target, maxIterations, iteration+1, true);
+			Modify(world, target, maxIterations, iteration + 1, true);
 
 			double newDistanceOffset = DistanceOffset + GetMovementAtFrame(0).Distance;
 			int newTimeOffset = TimeOffset + (int) (GetMovementAtFrame(0).Distance / Constants.MAX_SPEED) + ((GetMovementAtFrame(0).Distance % Constants.MAX_SPEED) < 0.001d ? 0 : 1);
@@ -168,7 +171,7 @@ namespace Halite2
 				CombineWith(newContinuedNavigationPath, Frames - 1);
 			}
 		}
-		
+
 		public Position GetIgnoreTarget()
 		{
 			return Target != null && Target.IgnoreTargetCollision ? Target.Center : null;
@@ -225,7 +228,7 @@ namespace Halite2
 		public void ModifyCollisionStop(CollisionInfo info)
 		{
 			double distance = info.Distance;
-			int frame = Math.Min(GetMovementFrameAtDistance(distance), Positions.Count-2); // If the collision is exactly at the end of our path, we want to modify the end of our path, not the non-existant point afterwards
+			int frame = Math.Min(GetMovementFrameAtDistance(distance), Positions.Count - 2); // If the collision is exactly at the end of our path, we want to modify the end of our path, not the non-existant point afterwards
 			Position safePosition = CreateCollisionStop(info);
 
 			//Modify the movement that would make us collide such that we stop right before the collision
@@ -302,10 +305,10 @@ namespace Halite2
 				positions.Add(Start);
 				return positions;
 			}
-			
+
 			double totalMovementDistance = 0;
 			double totalDistance = 0;
-			
+
 			for (int i = 0; i < Frames; i++)
 			{
 				NavigationMovement navigationMovement = GetMovementAtFrame(i);
@@ -330,7 +333,7 @@ namespace Halite2
 
 		public NavigationMovement GetMovementAtFrame(int frame)
 		{
-			return new NavigationMovement(Entity, GetPositionAtFrame(frame), GetPositionAtFrame(frame+1));
+			return new NavigationMovement(Entity, GetPositionAtFrame(frame), GetPositionAtFrame(frame + 1));
 		}
 
 		public void CombineWith(NavigationPath addition, int additionIndex)
@@ -351,10 +354,10 @@ namespace Halite2
 		public override string ToString()
 		{
 			string pretty = "";
-			for (int i=0; i<Positions.Count; i++)
+			for (int i = 0; i < Positions.Count; i++)
 			{
 				var pos = Positions[i];
-				pretty += pos + (i == Positions.Count-1 ? "" : "\n");
+				pretty += pos + (i == Positions.Count - 1 ? "" : "\n");
 			}
 			return pretty;
 		}

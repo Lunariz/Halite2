@@ -14,21 +14,17 @@ namespace Halite2
 		private static bool s_disabled;
 
 		private static ProfilingInstance s_topLevelInstance;
+
 		public static ProfilingInstance GetTopLevelInstance
 		{
-			get
-			{
-				return s_topLevelInstance;
-			}
+			get { return s_topLevelInstance; }
 		}
 
 		private static ProfilingInstance s_flatProfilingInstance = new FlatProfilingInstance("Flat").Start("Flat");
+
 		public static ProfilingInstance GetFlatInstance
 		{
-			get
-			{
-				return s_flatProfilingInstance;
-			}
+			get { return s_flatProfilingInstance; }
 		}
 
 		public static void Start(string name, bool flatOnly = false)
@@ -139,7 +135,7 @@ namespace Halite2
 
 		public virtual TimeSpan ProfilingTime
 		{
-			get { return m_profilingTime; } 
+			get { return m_profilingTime; }
 			set { m_profilingTime = value; }
 		}
 
@@ -184,7 +180,7 @@ namespace Halite2
 		public void Stop(string name)
 		{
 			ProfilingInstance instance = FindOrCreateInstance(name);
-			
+
 			instance.Stop();
 		}
 
@@ -288,9 +284,14 @@ namespace Halite2
 
 	public class FlatProfilingInstance : ProfilingInstance
 	{
-		public FlatProfilingInstance(string name, ProfilingInstance parent = null) : base(name, parent) { }
+		public FlatProfilingInstance(string name, ProfilingInstance parent = null) : base(name, parent)
+		{
+		}
 
-		public override TimeSpan ProfilingTime { get { return Stopwatch.Elapsed; } }
+		public override TimeSpan ProfilingTime
+		{
+			get { return Stopwatch.Elapsed; }
+		}
 
 		protected override ProfilingInstance FindOrCreateInstance(string name)
 		{

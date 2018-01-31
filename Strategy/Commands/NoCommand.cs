@@ -7,11 +7,10 @@ using Halite2.hlt;
 
 namespace Halite2
 {
-    class NoCommand : Command
-    {
-        public NoCommand(Ship ship) : base(ship, CommandType.NoCommand)
-        {
-
-        }
-    }
+	class NoCommand : Command
+	{
+		public NoCommand(Ship ship) : base(ship, CommandType.NoCommand)
+		{
+		}
+	}
 }

@@ -7,9 +7,8 @@ using Halite2.hlt;
 
 namespace Halite2
 {
-
-    //Current functionality: Check if limit is reached for target, if yes, resort to fallback
-    //Wanted functionality: Dynamically assign targets according to strategy based on distance heuristic
+	//Current functionality: Check if limit is reached for target, if yes, resort to fallback
+	//Wanted functionality: Dynamically assign targets according to strategy based on distance heuristic
 	public static class TargetUtility
 	{
 		private static Dictionary<Entity, TargetGroup> m_groups = new Dictionary<Entity, TargetGroup>();
@@ -52,7 +51,7 @@ namespace Halite2
 	{
 		public int Limit;
 		public Entity Target;
-		
+
 		private List<Entity> m_members = new List<Entity>();
 		private Entity m_weakestMember;
 
@@ -142,7 +141,7 @@ namespace Halite2
 			{
 				prettyprint += "\n" + member.ToString();
 			}
-			
+
 			return prettyprint;
 		}
 	}

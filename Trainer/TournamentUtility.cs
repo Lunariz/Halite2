@@ -23,14 +23,13 @@ namespace Halite2
 			int duelRounds = 1, int groupRounds = 1)
 		{
 			TournamentResults results = RunTournament(choosers, duelRounds, groupRounds);
-			
+
 			List<StrategyChooser> sortedChoosers = choosers.GetRange(0, choosers.Count);
 
 			//Sort by points per game from high to low
 			sortedChoosers.Sort((a, b) => -1 * results.AveragePointsPerGame[a].CompareTo(results.AveragePointsPerGame[b]));
 
 			return sortedChoosers.GetRange(0, winners);
-
 		}
 
 		public static TournamentResults RunTournament(List<StrategyChooser> choosers, int duelRounds = 1, int groupRounds = 1)
@@ -43,7 +42,7 @@ namespace Halite2
 				gamePoints[chooser] = 0;
 				gameCounts[chooser] = 0;
 			}
-			
+
 			PlayGames(choosers, duelRounds, 2, s_duelDegreeOfParallelism, s_duelPoints, gamePoints, gameCounts);
 			PlayGames(choosers, groupRounds, 4, s_groupDegreeOfParallelism, s_groupPoints, gamePoints, gameCounts);
 
@@ -58,10 +57,10 @@ namespace Halite2
 		{
 			List<StrategyChooser[]> plannedMatches = new List<StrategyChooser[]>();
 
-			for (int i=0; i<rounds; i++) 
+			for (int i = 0; i < rounds; i++)
 			{
 				List<StrategyChooser> randomizedChoosers = Util.RandomizeList(choosers);
-				
+
 				for (int roundIndex = 0; roundIndex < randomizedChoosers.Count / playerCount; roundIndex++)
 				{
 					int index = roundIndex * playerCount;
@@ -76,7 +75,7 @@ namespace Halite2
 				}
 			}
 
-			Parallel.For(0, plannedMatches.Count, new ParallelOptions { MaxDegreeOfParallelism = degreesOfParallelism }, i =>
+			Parallel.For(0, plannedMatches.Count, new ParallelOptions {MaxDegreeOfParallelism = degreesOfParallelism}, i =>
 			{
 				StrategyChooser[] players = plannedMatches[i];
 				GameResults gameResults = Trainer.PlayMatch(players);
@@ -86,7 +85,7 @@ namespace Halite2
 					StrategyChooser player = players[kvp.Key];
 					int rank = kvp.Value;
 
-					double points = pointAllocation[rank-1];
+					double points = pointAllocation[rank - 1];
 					gamePoints[player] += points;
 					gameCounts[player]++;
 				}

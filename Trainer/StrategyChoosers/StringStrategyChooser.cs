@@ -24,7 +24,7 @@ namespace Halite2
 				return;
 			}
 
-			string strategyLine = lines[lines.Length-1];
+			string strategyLine = lines[lines.Length - 1];
 			string[] strategies = strategyLine.Split(',');
 
 			foreach (string strategy in strategies)
@@ -35,10 +35,10 @@ namespace Halite2
 			}
 		}
 
-	    public StringStrategyChooser(List<StrategyType> input)
-	    {
-	        Strategies = input;
-	    }
+		public StringStrategyChooser(List<StrategyType> input)
+		{
+			Strategies = input;
+		}
 
 		public override Strategy ChooseStrategy(Ship ship, GameMap gameMap)
 		{
@@ -48,7 +48,7 @@ namespace Halite2
 
 				m_shipStrategies[ship.GetId()] = newStrategy;
 			}
-			
+
 			return m_shipStrategies[ship.GetId()];
 		}
 
@@ -70,8 +70,8 @@ namespace Halite2
 
 			int smallestSize = Math.Min(this.Strategies.Count, otherString.Strategies.Count);
 			StringStrategyChooser biggestChooser = (this.Strategies.Count > otherString.Strategies.Count) ? this : otherString;
-            
-            List<StrategyType> crossoverStrats = new List<StrategyType>();
+
+			List<StrategyType> crossoverStrats = new List<StrategyType>();
 
 			for (int i = 0; i < smallestSize; i++)
 			{
@@ -81,7 +81,7 @@ namespace Halite2
 
 			for (int i = smallestSize; i < biggestChooser.Strategies.Count; i++)
 			{
-                crossoverStrats.Add(biggestChooser.Strategies[i]);
+				crossoverStrats.Add(biggestChooser.Strategies[i]);
 			}
 
 			return new StringStrategyChooser(crossoverStrats);
@@ -89,7 +89,7 @@ namespace Halite2
 
 		public override void Mutate(float mutateChance = 0.05f, float insertionChance = 0.05f, float removalChance = 0.05f)
 		{
-			List<StrategyType> newStrategies = new List<StrategyType>(); 
+			List<StrategyType> newStrategies = new List<StrategyType>();
 			foreach (StrategyType type in Strategies)
 			{
 				if (StaticRandom.RandDouble() < removalChance)
@@ -116,7 +116,7 @@ namespace Halite2
 		public override string ToString()
 		{
 			string output = "String\n";
-			for (int i=0; i<Strategies.Count; i++)
+			for (int i = 0; i < Strategies.Count; i++)
 			{
 				StrategyType type = Strategies[i];
 				int strategyIndex = (int) type;

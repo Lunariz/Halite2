@@ -26,7 +26,8 @@ namespace Halite2
 
 		public static int OutputCount
 		{
-			get {
+			get
+			{
 				return 1;
 
 				//Previously, we would assign an output for every strategy and find the highest value. But for choosing between two strategies, you only need one output.
@@ -55,30 +56,36 @@ namespace Halite2
 			}
 		}
 
-		private static int GenericInputs { get { return 13; } }
+		private static int GenericInputs
+		{
+			get { return 13; }
+		}
 
 		private List<double> GetGenericInputs()
 		{
 			List<double> inputs = new List<double>();
-			
-			inputs.Add(MinusNormalize((double) m_ship.GetHealth() / Constants.MAX_SHIP_HEALTH));						//Remaining health
-			inputs.Add(m_ship.GetDockingStatus() == Ship.DockingStatus.Undocked ? -1 : 1);								//Is this ship docked
-			inputs.Add(MinusNormalize((m_gameMap.GetAllPlayers().Count(p => p.GetShips().Count > 0) - 2) / 2));			//Remaining playercount, -1 for 2, 0 for 3, 1 for 4
-			inputs.Add(MinusNormalize(GameMap.Turn / 300d));															//Game progress
-			inputs.Add(MinusNormalize((m_gameMap.GetHeight() - 160d) / (256d - 160d)));									//Mapsize
-			inputs.Add(MinusNormalize(m_gameMap.GetMyPlayer.GetShips().Count / m_gameMap.GetAllShips().Count));			//Generic turn-wide info about % of ships we own
+
+			inputs.Add(MinusNormalize((double) m_ship.GetHealth() / Constants.MAX_SHIP_HEALTH)); //Remaining health
+			inputs.Add(m_ship.GetDockingStatus() == Ship.DockingStatus.Undocked ? -1 : 1); //Is this ship docked
+			inputs.Add(MinusNormalize((m_gameMap.GetAllPlayers().Count(p => p.GetShips().Count > 0) - 2) / 2)); //Remaining playercount, -1 for 2, 0 for 3, 1 for 4
+			inputs.Add(MinusNormalize(GameMap.Turn / 300d)); //Game progress
+			inputs.Add(MinusNormalize((m_gameMap.GetHeight() - 160d) / (256d - 160d))); //Mapsize
+			inputs.Add(MinusNormalize(m_gameMap.GetMyPlayer.GetShips().Count / m_gameMap.GetAllShips().Count)); //Generic turn-wide info about % of ships we own
 			inputs.Add(MinusNormalize(m_gameMap.GetAllPlanets().Count(p => p.GetOwner() == m_gameMap.GetMyPlayerId()) / m_gameMap.GetAllPlanets().Count)); //Generic turn-wide info about % of planets we own
-			inputs.Add(MinusNormalize(m_ship.GetDistanceTo(m_gameMap.ShipsByDistance(m_ship, false)[0]) / 100d));		//Approximate normalized distance to closest enemy ship
-			inputs.Add(MinusNormalize(m_ship.GetDistanceTo(m_gameMap.NearbyPlanetsByDistance(m_ship)[0]) / 100d));		//Approximate normalized distance to closest planet
-			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 ? 1 : 0);										//Is player ship ID 0
-			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 + 1 ? 1 : 0);									//Is player ship ID 1
-			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 + 2 ? 1 : 0);									//Is player ship ID 2
+			inputs.Add(MinusNormalize(m_ship.GetDistanceTo(m_gameMap.ShipsByDistance(m_ship, false)[0]) / 100d)); //Approximate normalized distance to closest enemy ship
+			inputs.Add(MinusNormalize(m_ship.GetDistanceTo(m_gameMap.NearbyPlanetsByDistance(m_ship)[0]) / 100d)); //Approximate normalized distance to closest planet
+			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 ? 1 : 0); //Is player ship ID 0
+			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 + 1 ? 1 : 0); //Is player ship ID 1
+			inputs.Add(m_ship.GetId() == m_gameMap.GetMyPlayerId() * 3 + 2 ? 1 : 0); //Is player ship ID 2
 			inputs.Add(s_lastKnownStrategies.ContainsKey(m_ship.GetId()) ? (InputArea.aggressiveStrategies.Contains(s_lastKnownStrategies[m_ship.GetId()]) ? 1 : -1) : 0); //Was this ship aggressive last turn, 1 for yes, -1 for no, 0 for new ships
 
 			return inputs;
 		}
 
-		private static int AreaInputs { get { return s_rotationDivisions * s_bandDistances.Length * InputArea.InputCount; } }
+		private static int AreaInputs
+		{
+			get { return s_rotationDivisions * s_bandDistances.Length * InputArea.InputCount; }
+		}
 
 		private List<double> GetAreaInputs()
 		{
@@ -226,7 +233,7 @@ namespace Halite2
 					EnemyPlanets++;
 				}
 			}
-			
+
 			public List<double> GetData()
 			{
 				List<double> data = new List<double>();
@@ -234,19 +241,19 @@ namespace Halite2
 				float totalShips = DockedAllies + UndockedAllies + DockedEnemies + UndockedEnemies;
 
 				//For ships, we normalize the data by reporting percentages (report 0 in case of divide by zero)
-				data.Add(totalShips / ShipDivisor);											//Total amount of ships divided by maximum total amount (expected maximum)
+				data.Add(totalShips / ShipDivisor); //Total amount of ships divided by maximum total amount (expected maximum)
 
 				float alliedShips = (DockedAllies + UndockedAllies) / totalShips;
-				data.Add(totalShips > 0 ? alliedShips : 0);									//% of ships that is allied
+				data.Add(totalShips > 0 ? alliedShips : 0); //% of ships that is allied
 
 				float dockedAllies = DockedAllies / (DockedAllies + UndockedAllies);
-				data.Add((DockedAllies + UndockedAllies) > 0 ? dockedAllies : 0);			//% of allies that is docked
+				data.Add((DockedAllies + UndockedAllies) > 0 ? dockedAllies : 0); //% of allies that is docked
 
 				float dockedEnemies = DockedEnemies / (DockedEnemies + UndockedEnemies);
-				data.Add((DockedEnemies + UndockedEnemies) > 0 ? dockedEnemies : 0);		//% of enemies that is docked
+				data.Add((DockedEnemies + UndockedEnemies) > 0 ? dockedEnemies : 0); //% of enemies that is docked
 
 				float aggessiveAllies = AggressiveAllies / (AggressiveAllies + DefensiveAllies);
-				data.Add((AggressiveAllies + DefensiveAllies) > 0 ? aggessiveAllies : 0);	//% of allies that is aggressive
+				data.Add((AggressiveAllies + DefensiveAllies) > 0 ? aggessiveAllies : 0); //% of allies that is aggressive
 
 				//For planets, we clamp the value at 1 - reporting multiple planets is not important
 				data.Add(Math.Min(1, AllyPlanets));

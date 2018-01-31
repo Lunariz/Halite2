@@ -18,8 +18,8 @@ namespace Halite2.Strategies
 		private static double s_abandonPlanetRatio = 0.5d;
 		private static int s_minAbandonPlanetEnemySize = 3;
 		private static float s_preferredDefendRatio = 1.1f;
-	    private static float s_defendDistance = 5f;
-	    private static float s_defendLeeway = 3f;
+		private static float s_defendDistance = 5f;
+		private static float s_defendLeeway = 3f;
 
 		public override Command Execute(Ship ship, GameMap gameMap)
 		{

@@ -11,10 +11,11 @@ namespace Halite2
 	{
 		private static bool s_showFullLog = false;
 		private static bool s_showTimeLog = false;
-		
+
 		public static string AppDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
 		private static string rootDir = "";
+
 		public static string RootDir
 		{
 			get
@@ -43,7 +44,7 @@ namespace Halite2
 			startInfo.RedirectStandardOutput = true;
 
 			process.StartInfo = startInfo;
-			
+
 			process.Start();
 			process.BeginOutputReadLine();
 			process.WaitForExit();
@@ -64,7 +65,7 @@ namespace Halite2
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
 
-			string arguments = "-d \"" + (int)(height*1.5f) + " " + height + "\"";
+			string arguments = "-d \"" + (int) (height * 1.5f) + " " + height + "\"";
 
 			if (seed != "")
 			{
@@ -80,19 +81,19 @@ namespace Halite2
 			{
 				arguments += " \"" + RootDir + "MyBot.exe " + botFile + "\"";
 			}
-			
-            Process process = new Process();
+
+			Process process = new Process();
 
 			ProcessStartInfo startInfo = new ProcessStartInfo(RootDir + "halite.exe");
-            startInfo.CreateNoWindow = true;
+			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 			startInfo.RedirectStandardOutput = true;
 			startInfo.Arguments = arguments;
 
-	        process.StartInfo = startInfo;
-			
+			process.StartInfo = startInfo;
+
 			GameResults results = new GameResults();
-			
+
 			process.OutputDataReceived += (sender, arg) => ProcessOutput(arg.Data, ref results);
 			process.Start();
 			process.BeginOutputReadLine();
@@ -112,7 +113,7 @@ namespace Halite2
 			{
 				process.Kill();
 			}
-			
+
 			process.Close();
 
 			process.Dispose();
@@ -140,7 +141,7 @@ namespace Halite2
 			{
 				Console.WriteLine(output);
 			}
-			
+
 			Regex fileRegex = new Regex("Opening a file at \\.\\\\(?<file>.*)");
 			Match fileMatch = fileRegex.Match(output);
 			if (fileMatch.Success)
@@ -178,9 +179,9 @@ namespace Halite2
 				GameResults results = RunMatch(generateReplays, leftBot, rightBot);
 
 				//XOR: either p1 wins or p2 wins and they are swapped, but not both
-				win1 += results.IsPlayer1Winner() ^ i%2 == 0 ? 0 : 1;
-				win2 += results.IsPlayer1Winner() ^ i%2 == 0 ? 1 : 0;
-				
+				win1 += results.IsPlayer1Winner() ^ i % 2 == 0 ? 0 : 1;
+				win2 += results.IsPlayer1Winner() ^ i % 2 == 0 ? 1 : 0;
+
 				double currentWinrate = (float) Math.Max(win1, win2) / (win1 + win2);
 				Console.WriteLine((results.IsPlayer1Winner() ? leftBot : rightBot) + " wins");
 				Console.WriteLine((win1 >= win2 ? bot1 : bot2) + " wins with winrate " + currentWinrate);

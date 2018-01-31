@@ -25,9 +25,8 @@ namespace Halite2
 		//Third, we iteratively cut the paths short of ships that could not find a path without colliding
 		public static List<Move> GenerateMoves(GameMap gameMap, List<Command> commands)
 		{
-
 			List<Move> moves = new List<Move>();
-			
+
 			ConcurrentDictionary<Entity, NavigationPath> paths = new ConcurrentDictionary<Entity, NavigationPath>();
 			Dictionary<int, Position> newPositions = new Dictionary<int, Position>();
 
@@ -65,11 +64,12 @@ namespace Halite2
 			{
 				commands = Util.RandomizeList(commands);
 			}
-			
+
 			//We add all the basic moves to the list and create the first iteration of paths for our moving ships
-			foreach (Command command in commands) {
-				switch (command.Type) {
-					
+			foreach (Command command in commands)
+			{
+				switch (command.Type)
+				{
 					case Command.CommandType.MoveCommand:
 						MoveCommand moveCommand = command as MoveCommand;
 
@@ -94,17 +94,16 @@ namespace Halite2
 					case Command.CommandType.DockCommand:
 						DockCommand dockCommand = command as DockCommand;
 						moves.Add(new DockMove(dockCommand.Ship, dockCommand.TargetPlanet));
-			
+
 						paths[command.Ship] = NavigationPath.CreateStatic(command.Ship);
 						break;
 
 					case Command.CommandType.UndockCommand:
 						UndockCommand undockCommand = command as UndockCommand;
 						moves.Add(new UndockMove(undockCommand.Ship));
-			
+
 						paths[command.Ship] = NavigationPath.CreateStatic(command.Ship);
 						break;
-
 				}
 			}
 
@@ -121,7 +120,7 @@ namespace Halite2
 				{
 					NavigationPath path = NavigationPath.CreateModified(moveCommand.Ship, moveCommand.Ship, moveCommand.Target, world);
 					movePaths[moveCommand.Ship] = path;
-					
+
 					world.Update(moveCommand.Ship, path);
 				}
 			}
@@ -149,7 +148,7 @@ namespace Halite2
 							{
 								continue;
 							}
-							
+
 							CollisionInfo collision = NavigationCollisionUtility.FindCollisionBetweenPaths(path, volatilePath, path.GetIgnoreTarget(), Double.MaxValue);
 
 							if (collision.CollisionHappened)
@@ -159,7 +158,7 @@ namespace Halite2
 							}
 						}
 					}
-					
+
 					foreach (Entity newVolatileEntity in newVolatilePaths)
 					{
 						NavigationPath path = movePaths[newVolatileEntity];

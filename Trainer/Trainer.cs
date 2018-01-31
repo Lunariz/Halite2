@@ -107,7 +107,7 @@ namespace Halite2
 			//https://github.com/HaliteChallenge/Halite-II/blob/master/apiserver/apiserver/coordinator/matchmaking.py#L9
 			int[] possibleHeights = new[] {80, 80, 88, 88, 96, 96, 96, 104, 104, 104, 104, 112, 112, 112, 120, 120, 128, 128};
 
-			return possibleHeights[StaticRandom.Rand(possibleHeights.Length)]*2;
+			return possibleHeights[StaticRandom.Rand(possibleHeights.Length)] * 2;
 		}
 	}
 }

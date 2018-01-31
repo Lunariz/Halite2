@@ -125,35 +125,35 @@ namespace Halite2
 		private void ShowGenomeForm()
 		{
 			Thread.Sleep(1000);
-            m_bestGenomeForm = new GenomeForm("Best Genome", m_neatEvolutionAlgorithm);
+			m_bestGenomeForm = new GenomeForm("Best Genome", m_neatEvolutionAlgorithm);
 			m_bestGenomeForm.Show();
 			m_bestGenomeForm.RefreshView();
 
-            System.Windows.Forms.Application.Run();
+			System.Windows.Forms.Application.Run();
 		}
 
 		private NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm()
 		{
 			// Create distance metric. Mismatched genes have a fixed distance of 10; for matched genes the distance is their weight difference.
-            IDistanceMetric distanceMetric = new ManhattanDistanceMetric(1.0, 0.0, 10.0);
-            ISpeciationStrategy<NeatGenome> speciationStrategy = new KMeansClusteringStrategy<NeatGenome>(distanceMetric);
+			IDistanceMetric distanceMetric = new ManhattanDistanceMetric(1.0, 0.0, 10.0);
+			ISpeciationStrategy<NeatGenome> speciationStrategy = new KMeansClusteringStrategy<NeatGenome>(distanceMetric);
 
-            // Create complexity regulation strategy. 
+			// Create complexity regulation strategy. 
 			IComplexityRegulationStrategy complexityRegulationStrategy = new DefaultComplexityRegulationStrategy(ComplexityCeilingType.Absolute, 100);
 
 			NeatEvolutionAlgorithmParameters _eaParams = CreateCustomEAParameters();
 
-            // Create the evolution algorithm.
-            NeatEvolutionAlgorithm<NeatGenome> ea = new NeatEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
+			// Create the evolution algorithm.
+			NeatEvolutionAlgorithm<NeatGenome> ea = new NeatEvolutionAlgorithm<NeatGenome>(_eaParams, speciationStrategy, complexityRegulationStrategy);
 
-            // Create a genome list evaluator. This will evaluate the entire list using the decoder
-            IGenomeListEvaluator<NeatGenome> evaluator = new TournamentGenomeListEvaluator<NeatGenome,IBlackBox>();
+			// Create a genome list evaluator. This will evaluate the entire list using the decoder
+			IGenomeListEvaluator<NeatGenome> evaluator = new TournamentGenomeListEvaluator<NeatGenome, IBlackBox>();
 
-            // Initialize the evolution algorithm.
-            ea.Initialize(evaluator, m_neatGenomeFactory, m_neatGenomePool);
+			// Initialize the evolution algorithm.
+			ea.Initialize(evaluator, m_neatGenomeFactory, m_neatGenomePool);
 
-            // Finished. Return the evolution algorithm
-            return ea;
+			// Finished. Return the evolution algorithm
+			return ea;
 		}
 
 		private ConnectionMutationInfoList CreateCustomMutationInfoList()
@@ -164,27 +164,27 @@ namespace Halite2
 			//large chance (60%) to jiggle a large amount of connections (30%) by a little amount (0.5)
 			//medium chance (30%) to jiggle a medium amount of connections (10%) by a medium amount (1.5)
 			//small chance (10%) to jiggle a small amount of connections (3.3%) by a large amount (3)
-            list.Add(new ConnectionMutationInfo(0.5985, ConnectionPerturbanceType.JiggleUniform,
-                                                ConnectionSelectionType.Proportional, 0.3d, 0, 0.5, 0.5));
+			list.Add(new ConnectionMutationInfo(0.5985, ConnectionPerturbanceType.JiggleUniform,
+				ConnectionSelectionType.Proportional, 0.3d, 0, 0.5, 0.5));
 
-            list.Add(new ConnectionMutationInfo(0.2985, ConnectionPerturbanceType.JiggleUniform,
-                                                ConnectionSelectionType.Proportional, 0.1d, 0, 1.5, 1.5));
+			list.Add(new ConnectionMutationInfo(0.2985, ConnectionPerturbanceType.JiggleUniform,
+				ConnectionSelectionType.Proportional, 0.1d, 0, 1.5, 1.5));
 
-            list.Add(new ConnectionMutationInfo(0.0985, ConnectionPerturbanceType.JiggleUniform,
-                                                ConnectionSelectionType.Proportional, 0.033d, 0, 3, 3));
+			list.Add(new ConnectionMutationInfo(0.0985, ConnectionPerturbanceType.JiggleUniform,
+				ConnectionSelectionType.Proportional, 0.033d, 0, 3, 3));
 
-            // Small chance to reset mutations. 1/5th, 1/4th and 1/3rd connections respectively.
-            list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
-                                                ConnectionSelectionType.Proportional, 0.2d, 0, 0.0, 0));
+			// Small chance to reset mutations. 1/5th, 1/4th and 1/3rd connections respectively.
+			list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
+				ConnectionSelectionType.Proportional, 0.2d, 0, 0.0, 0));
 
-            list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
-                                                ConnectionSelectionType.Proportional, 0.25d, 0, 0.0, 0));
+			list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
+				ConnectionSelectionType.Proportional, 0.25d, 0, 0.0, 0));
 
-            list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
-                                                ConnectionSelectionType.Proportional, 0.33d, 0, 0.0, 0));
+			list.Add(new ConnectionMutationInfo(0.015, ConnectionPerturbanceType.Reset,
+				ConnectionSelectionType.Proportional, 0.33d, 0, 0.0, 0));
 
-            list.Initialize();
-            return list;
+			list.Initialize();
+			return list;
 		}
 
 		private NeatGenomeParameters CreateCustomNeatGenomeParameters()
@@ -212,40 +212,39 @@ namespace Halite2
 		where TGenome : class, IGenome<TGenome>
 		where TPhenome : class
 	{
-        readonly IGenomeDecoder<TGenome,TPhenome> _genomeDecoder;
-        ulong _evalCount;
+		readonly IGenomeDecoder<TGenome, TPhenome> _genomeDecoder;
+		ulong _evalCount;
 
 		public ulong EvaluationCount
-        {
-            get { return _evalCount; }
-        }
+		{
+			get { return _evalCount; }
+		}
 
 		public bool StopConditionSatisfied
-        {
-            get { return false; }
-        }
+		{
+			get { return false; }
+		}
 
 		public void Evaluate(IList<TGenome> genomeList)
-        {
-	        Dictionary<TGenome, StrategyChooser> choosers = new Dictionary<TGenome, StrategyChooser>();
-	        foreach (TGenome genome in genomeList)
-	        {
+		{
+			Dictionary<TGenome, StrategyChooser> choosers = new Dictionary<TGenome, StrategyChooser>();
+			foreach (TGenome genome in genomeList)
+			{
 				choosers[genome] = new NEATStrategyChooser(genome as NeatGenome);
 
-		        genome.EvaluationInfo.SetFitness(1);
-	        }
+				genome.EvaluationInfo.SetFitness(1);
+			}
 
-	        TournamentResults results = TournamentUtility.RunTournament(choosers.Values.ToList(), NEATTrainer.s_tournamentDuelRounds, NEATTrainer.s_tournamentGroupRounds);
+			TournamentResults results = TournamentUtility.RunTournament(choosers.Values.ToList(), NEATTrainer.s_tournamentDuelRounds, NEATTrainer.s_tournamentGroupRounds);
 
-	        foreach (var kvp in choosers)
-	        {
-		        kvp.Key.EvaluationInfo.SetFitness(results.AveragePointsPerGame[kvp.Value]);
-	        }
-        }
+			foreach (var kvp in choosers)
+			{
+				kvp.Key.EvaluationInfo.SetFitness(results.AveragePointsPerGame[kvp.Value]);
+			}
+		}
 
 		public void Reset()
-        {
-
-        }
+		{
+		}
 	}
 }

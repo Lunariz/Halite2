@@ -19,8 +19,8 @@ namespace Halite2
 	{
 		public NeatGenome Genome;
 		private IBlackBox m_box;
-		private IGenomeDecoder<NeatGenome, IBlackBox> m_genomeDecoder =  new NeatGenomeDecoder(NetworkActivationScheme.CreateCyclicFixedTimestepsScheme(1));
-		
+		private IGenomeDecoder<NeatGenome, IBlackBox> m_genomeDecoder = new NeatGenomeDecoder(NetworkActivationScheme.CreateCyclicFixedTimestepsScheme(1));
+
 		public NEATStrategyChooser(NeatGenome genome)
 		{
 			Genome = genome;
@@ -36,7 +36,7 @@ namespace Halite2
 
 			NEATInput input = new NEATInput(ship, gameMap);
 			input.Fill(inputArr);
-			
+
 			Profiler.Stop("NEAT Fill Input");
 
 			m_box.Activate();
@@ -70,8 +70,8 @@ namespace Halite2
 
 			string filename = TemporaryName + "tempNEAT.xml";
 
-            XmlWriterSettings _xwSettings = new XmlWriterSettings();
-            _xwSettings.Indent = true;
+			XmlWriterSettings _xwSettings = new XmlWriterSettings();
+			_xwSettings.Indent = true;
 
 			using (XmlWriter xw = XmlWriter.Create(filename, _xwSettings))
 			{
@@ -92,7 +92,7 @@ namespace Halite2
 		public static NEATStrategyChooser CreateFromFile(string filePath)
 		{
 			//Remove the NEAT bot identifier on the first line before reading via the NEAT framework
-			
+
 			MemoryStream stream = new MemoryStream();
 			StreamWriter writer = new StreamWriter(stream);
 			string[] filecontents = File.ReadAllLines(filePath);
@@ -100,20 +100,18 @@ namespace Halite2
 			{
 				writer.Write(filecontents[i] + "\n");
 			}
-			
+
 			writer.Flush();
 			stream.Position = 0;
 
-			using(XmlReader xr = XmlReader.Create(stream)) 
-            {
+			using (XmlReader xr = XmlReader.Create(stream))
+			{
 				NeatGenomeParameters neatGenomeParams = new NeatGenomeParameters();
 				NeatGenomeFactory factory = new NeatGenomeFactory(NEATInput.InputCount, NEATInput.OutputCount, neatGenomeParams);
 				NeatGenome genome = NeatGenomeXmlIO.ReadCompleteGenomeList(xr, false, factory)[0];
 
 				return new NEATStrategyChooser(genome);
-            }
+			}
 		}
 	}
-
-	
 }

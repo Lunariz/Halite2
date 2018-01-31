@@ -76,7 +76,7 @@ namespace Halite2.Strategies
 			{
 				double enemyShipPercent = player.GetShips().Count / (double) gameMap.GetAllShips().Count;
 				if (player != gameMap.GetMyPlayer && enemyShipPercent > 0.5f && myShipPercent < 0.25f ||
-					player == gameMap.GetMyPlayer && myShipPercent < 0.1f)
+				    player == gameMap.GetMyPlayer && myShipPercent < 0.1f)
 				{
 					return true;
 				}
@@ -228,7 +228,7 @@ namespace Halite2.Strategies
 					}
 				}
 			}
-			
+
 			bool reachedCurrentCorner = closeToCorner / (double) (gameMap.GetAllShips(true).Count - s_stayAtCornerShips.Count) > 0.9f;
 			s_reachedCornerOnce = s_reachedCornerOnce || reachedCurrentCorner;
 

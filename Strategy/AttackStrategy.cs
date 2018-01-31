@@ -24,7 +24,7 @@ namespace Halite2.Strategies
 			{
 				return StrategyManager.CreateStrategy(StrategyType.Desert).Execute(ship, gameMap);
 			}
-			
+
 			if (ship.GetDockingStatus() != Ship.DockingStatus.Undocked)
 			{
 				return new NoCommand(ship);
@@ -53,8 +53,8 @@ namespace Halite2.Strategies
 			//Attempt to attack nearby owned planets first
 			foreach (Planet ownedPlanet in enemyPlanets)
 			{
-				List<Ship> nearbyEnemyShips = gameMap.GetAllShips(false).Where(s => s.GetDockingStatus() == Ship.DockingStatus.Undocked && closestEnemyPlanet[s] == ownedPlanet  && s.GetDistanceTo(ownedPlanet) <= s_nearbyEnemyDistance).ToList();
-				List<Ship> nearbyAlliedShips = gameMap.GetAllShips(true).Where(s => s.GetDockingStatus() == Ship.DockingStatus.Undocked && closestEnemyPlanet[s] == ownedPlanet  && s.GetDistanceTo(ownedPlanet) <= s_nearbyEnemyDistance).ToList();
+				List<Ship> nearbyEnemyShips = gameMap.GetAllShips(false).Where(s => s.GetDockingStatus() == Ship.DockingStatus.Undocked && closestEnemyPlanet[s] == ownedPlanet && s.GetDistanceTo(ownedPlanet) <= s_nearbyEnemyDistance).ToList();
+				List<Ship> nearbyAlliedShips = gameMap.GetAllShips(true).Where(s => s.GetDockingStatus() == Ship.DockingStatus.Undocked && closestEnemyPlanet[s] == ownedPlanet && s.GetDistanceTo(ownedPlanet) <= s_nearbyEnemyDistance).ToList();
 				//List<Ship> dockedEnemyShips = gameMap.GetAllShips(false).Where(s => s.GetDockingStatus() != Ship.DockingStatus.Undocked && s.GetDockedPlanet() == ownedPlanet.GetId()).ToList();
 
 				if (nearbyEnemyShips.Count >= s_minAbandonPlanetEnemySize && nearbyAlliedShips.Count / (double) nearbyEnemyShips.Count < s_abandonPlanetRatio)

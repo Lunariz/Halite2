@@ -7,8 +7,10 @@ using Halite2.hlt;
 
 namespace Halite2
 {
-    class UndockCommand : Command
-    {
-        public UndockCommand(Ship ship) : base(ship, CommandType.UndockCommand) { }
-    }
+	class UndockCommand : Command
+	{
+		public UndockCommand(Ship ship) : base(ship, CommandType.UndockCommand)
+		{
+		}
+	}
 }
