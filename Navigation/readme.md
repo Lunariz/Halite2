@@ -41,14 +41,14 @@ Let's start with a simple example.
 
 * Ship A wants to find a path to goal D.  
 * In its way are two (unmoving) planets, P1 and P2.  
-* The ship first tries to move to D in a straight line. Clearly, this generates a collision with P2.  
-* In order to avoid P2, we need to generate a new point to avoid it, we call this point C.  
+* The ship first tries to move to D in a straight line. Clearly, this generates a collision with P1.  
+* In order to avoid P1, we need to generate a new point to avoid it, we call this point C.  
 * Having generated this point, we dive into the first recursion - we cannot assume we can safely reach point C, so now we must first find a path from A to C  
-* Evidently, this also generates a collision, now with P1. Again, we generate a new 'safe' point, point B, and recurse to find a path from A to B  
+* Evidently, this also generates a collision, now with P2. Again, we generate a new 'safe' point, point B, and recurse to find a path from A to B  
 * This time, going from A to B in a straight line is possible without colliding, meaning we have found the first part of our path.  
 * We step out of the second recursion and now check the second part of this partial path - can we traverse from B to C in a straight line?  
 * Since the answer is yes, we can safely combine these straight paths into a more complex path: A-B-C  
-* We step out of the first recursion and now check the second part of this partical path - can we traverse from C to D in a straight line?  
+* We step out of the first recursion and now check the second part of this partial path - can we traverse from C to D in a straight line?  
 * Again the answer is yes, so we combine the two safe paths (A-B-C and C-D) to form A-B-C-D, which is a collisionless path from A to D.
 
 This is the basic approach to pathing, but three questions remain unanswered:
