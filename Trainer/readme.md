@@ -75,6 +75,8 @@ As a result, I [integrated the tournament style of describing fitness](https://g
 
 The result is the [NEATTrainer](https://github.com/Lunariz/Halite2/blob/master/Trainer/NEATTrainer.cs), which additionally shows you the current best neural network while training!
 
+![Neural Network Result](https://i.imgur.com/ZNvJGLL.png)
+
 ## Pros & Cons
 
 One huge benefit of using this system - evolving neural networks to choose high-level strategies - is that it is applicable to more than one problem.  

@@ -37,7 +37,7 @@ Hence, that will be the 'online' step.
 
 Let's start with a simple example.
 
-[Image]
+![Collision Example](https://i.imgur.com/edrOD9o.png)
 
 * Ship A wants to find a path to goal D.  
 * In its way are two (unmoving) planets, P1 and P2.  
