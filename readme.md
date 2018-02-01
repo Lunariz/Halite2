@@ -17,8 +17,8 @@ Instead, I took the best parts of ML and hardcoding: I used ML to make the diffi
 
 I strongly believe that the best result is at the intersection between machine intelligence and human intelligence. This may change in the future, but it seems evident from the results of this bot as well.
 
-Out of 5832 contestants, my bot was ranked #55 (Top 0.94%)  
-Out of 153 contestants who used ML, my bot was ranked #2 (Top 1.3%)
+[Out of 5832 contestants](https://halite.io/programming-competition-leaderboard?page=3), my bot was ranked **#54** (Top 0.93%)  
+[Out of 153 contestants who used ML](https://halite.io/league-board?id=3&leaguename=Top%2025%20Machine%20Learning&language=ML&limit=25), my bot was ranked **#2** (Top 1.3%)
 
 ## Structure
 
