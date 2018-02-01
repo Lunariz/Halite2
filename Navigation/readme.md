@@ -98,8 +98,8 @@ This guarantees that the first collision we find, is the first collision that wo
 In addition, this serves as a good optimization, as we can skip a lot of collision checking if we do find one early.
 
 Another optimization is the usage of AABBs, or axis-aligned boundingboxes.  
-Two paths whose bounding boxes do not overlap, cannot possibly collide in any given segment.  
-As such, we can remove any paths from the list of paths to check if their boundingboxes do not overlap.
+All full paths are given bounding boxes fully surrounding them.  
+It's computationally very cheap to calculate a ray-box intersection, so we can skip many expensive path comparisons by checking for an intersection between a path and another path's box first.
 
 This system, while intuitive to understand, took the longest to develop by far. It is also the most spread out over various functions:  
 [NavigationWorld.FindCollision()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationWorld.cs#L51) is the most high-level implementation that describes comparing path segments  
