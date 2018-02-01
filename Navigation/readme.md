@@ -106,7 +106,8 @@ This system, while intuitive to understand, took the longest to develop by far. 
 [NavigationCollisionUtility.CalculateCollisionTimeBetweenMovements()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationCollisionUtility.cs#L192) and its [counterpart CalculateCollisionTime](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationCollisionUtility.cs#L202) describe the actual math between finding finding a collision between two objects flying in a straight line  
 [BoundingBox.NavPathIntersect()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationCollisionUtility.cs#L375) is the entrypoint for finding collision between a path and a bounding box
 
-Note that this approach of comparing paths is valid for both moving and unmoving objects. In fact, CalculateCollisionTimeBetweenMovements simplifies the situation by subtracting vectors to create an equivalent situation in which one object is unmoving.
+Note that this approach of comparing paths is valid for both moving and unmoving objects.  
+In fact, CalculateCollisionTimeBetweenMovements simplifies the situation by subtracting vectors to create an equivalent situation in which one object is unmoving.
 
 ### Postprocessing Paths
 
