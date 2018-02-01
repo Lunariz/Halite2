@@ -59,12 +59,12 @@ This is the basic approach to pathing, but three questions remain unanswered:
 
 #### Calculating Avoidance Points
 
-Luckily, we have the liberty of assuming each collider is circular in this game. As a result, each collider has a center and radius we can do math with.  
+Luckily, we have the liberty of assuming each collider is circular in this game. As a result, each collider has a center and radius we can work with.  
 In the case of calculating avoidance points, we use the collider data to form tangents from our position to the collider.  
-Tangents are the lines you can draw from any point outside a circle, that only touch the circle (and do not miss or intersect)  
-The two points on the circle where the tangesnts touch the circle are called tangent points.  
-Taking these points and then extrapolating from the surface by a safety margin, gives us two points that we can reach in a straight line, which will allow us to avoid the collider.  
-We choose the point closest to our final targetposition to minimize distance traveled.
+Tangents are the lines you can draw from any point outside a circle, that only touch the circle (and do not miss or intersect it)  
+The two points on the circle where the tangents touch the circle are called tangent points.  
+This gives us two points that we can reach in a straight line, while avoiding the collider.  
+We choose the point closest to our final target to minimize distance traveled.
 
 The relevant code can be found in [NavigationPath.CreateCollisionAvoidance()](https://github.com/Lunariz/Halite2/blob/master/Navigation/NavigationPath.cs#L180)
 
