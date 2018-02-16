@@ -29,7 +29,7 @@ My bot is divided in three parts, each of which has a separate writeup that goes
 ### High-level strategy choosing through NEAT
 
 ML is great at taking in lots of data and processing it quickly to come at a conclusion or classification.  
-In order to abuse this, I used a NEAT library called SharpNEAT to build neural networks that choose which strategy a ship performs.  
+In order to exploit this, I used a NEAT library called SharpNEAT to build neural networks that choose which strategy a ship performs.  
 This StrategyChooser has nothing to say about how the strategy should be performed - it simply gives a high-level order to be executed.
 
 In order to find a neural network that can interpret data in a smart way and give the correct order, NEAT builds a population of neural networks and evolves them based on their fitness.  
