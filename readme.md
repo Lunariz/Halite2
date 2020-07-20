@@ -5,7 +5,7 @@
 Halite 2 was an AI programming competition hosted by Two Sigma. The goal is to build a bot that controls ships to strategically beat the opponent.  
 Here's an example replay to illustrate the idea:
 
-<p align="center"><img alt="main gif" src="http://www.lukasdonkers.com/wp-content/uploads/2018/02/halite%20gif%202.gif"></p>
+<p align="center"><img alt="main gif" src="http://i.imgur.com/lDMjOWj.gif"></p>
 
 ## My Approach
 
