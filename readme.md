@@ -5,7 +5,7 @@
 Halite 2 was an AI programming competition hosted by Two Sigma. The goal is to build a bot that controls ships to strategically beat the opponent.  
 Here's an example replay to illustrate the idea:
 
-<p align="center"><img alt="main gif" src="http://i.imgur.com/lDMjOWj.gif"></p>
+[Replay](https://2017.halite.io/play/?game_id=9767013&replay_class=1&replay_name=replay-20180129-132551%2B0000--749741380-312-208-1517232306)
 
 ## My Approach
 
@@ -17,8 +17,8 @@ Instead, I took the best parts of ML and hardcoding: I used ML to make the diffi
 
 I strongly believe that the best result is at the intersection between machine intelligence and human intelligence. This may change in the future, but it seems evident from the results of this bot as well.
 
-[Out of 5832 contestants](https://halite.io/programming-competition-leaderboard?page=3), my bot was ranked **#54** (Top 0.93%)  
-[Out of 153 contestants who used ML](https://halite.io/league-board?id=3&leaguename=Top%2025%20Machine%20Learning&language=ML&limit=25), my bot was ranked **#2** (Top 1.3%)
+[Out of 5832 contestants](https://2017.halite.io/programming-competition-leaderboard), my bot was ranked **#54** (Top 0.93%)  
+[Out of 153 contestants who used ML](https://2017.halite.io/programming-competition-leaderboard?language=ML), my bot was ranked **#2** (Top 1.3%)
 
 ## Structure
 
